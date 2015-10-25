@@ -1,8 +1,10 @@
 HATCH
 =====
 
-a programming language by Sarah Gould
--------------------------------------
+a programming language
+----------------------
+
+By [Sarah Gould](http://www.zenzoa.com)
 
 Hatch is a little language that's based on closures and lazy evaluation, and transcompiles into Javascript. It's really only a toy, and half-finished at that (no lists, loops, or even non-integer numbers). Even so, I had fun making it, and I hope you have fun playing with it!
 
@@ -62,6 +64,7 @@ e : {
 e.public, << Returns: now you see me" >>
 e.getPrivate("hi"), << Returns: nuh-uh-uh! you did't say the magic word" >>
 e.getPrivate("gingko") << Returns: now you see don't" >>
+```
 
 A sample Hatch program
 ----------------------
