@@ -1,0 +1,110 @@
+<!doctype html5>
+
+<title>Hatch: a programming language</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<h1>Hatch</h1>
+<h2>a programming language</h2>
+<div id="intro">
+    <a class="show" data-tab="overview" href="#">Overview</a>
+    <a class="show" data-tab="definitions" href="#">Definitions</a>
+    <a class="show" data-tab="objects" href="#">Objects</a>
+    <a class="show" data-tab="functions" href="#">Functions</a>
+    <a class="show" data-tab="closures" href="#">Closures</a>
+    <a class="show" data-tab="modules" href="#">Modules</a>
+
+    <div id="overview">
+        <p>Hatch is a little language that's based on closures and lazy evaluation, and transcompiles into Javascript. It's really only a toy, and half-finished at that (no lists, loops, or even non-integer numbers). Even so, I had fun making it, and I hope you have fun playing with it!</p>
+    </div>
+
+    <div id="definitions">
+<pre>
+<< This is a comment. >>
+a : 1
+a << Returns: 1 >>
+</pre>
+    </div>
+
+    <div id="objects">
+<pre>
+b : {
+    x : 1
+    y : 2
+    z : "something unexpected"
+    }
+b.x << Returns: 1 >>
+</pre>
+    </div>
+
+    <div id="functions">
+<pre>
+c : { (p q)
+    add( mul(p p) mul(q q) )
+    }
+c(4 5) << Returns: 41 >>
+</pre>
+    </div>
+
+    <div id="closures">
+<pre>
+d : {
+    u : 40
+    addToMe : { (v)
+        add( u v )
+        }
+    }
+
+d.addToMe(2) << Returns 42 >>
+</pre>
+    </div>
+
+    <div id="modules">
+<pre>
+e : {
+    public : "now you see me"
+    _private : "now you don't"
+    getPrivate : { (password)
+        if(eq(password "gingko")
+            _private
+            "nuh-uh-uh! you did't say the magic word")
+        }
+    }
+e.public, << Returns: now you see me" >>
+e.getPrivate("hi"), << Returns: nuh-uh-uh! you did't say the magic word" >>
+e.getPrivate("gingko") << Returns: now you see don't" >>
+</pre>
+    </div>
+</div>
+<div id="fiddle">
+    <textarea id="code">
+&lt;&lt; This is sample Hatch program. &gt;&gt;
+
+newVector : {(x_prime y_prime)
+&#09;{x:x_prime y:y_prime}
+&#09;}
+
+addVectors : {(a b)
+&#09;newVector(
+&#09;&#09;add(a.x b.x)
+&#09;&#09;add(a.y b.y))
+&#09;}
+
+vector1 : newVector(1 1)
+vector2 : newVector(1 2)
+
+if( eq(&#09;addVectors(vector1 vector2).x
+&#09;&#09;&#09;2)
+&#09;"hi"
+&#09;"bye")
+    </textarea>
+    <div id="right-panel">
+        <button id="run-button">Run</button><button id="js-button">JS</button>
+        <pre id="output"></pre>
+    </div>
+</div>
+
+<div id="footer">Created by Sarah Gould, under an <a href="LICENSE.txt">MIT license</a>.</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="hatch.js"></script>
+<script src="interface.js"></script>
